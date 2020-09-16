@@ -11,7 +11,7 @@ function createListElements() {
     li.appendChild(document.createTextNode(input.value));
     ul.appendChild(li);
 
-    li.addEventListener("click", function() {
+    li.addEventListener("click", function () {
         //creates a boolearn that toggles the done class on li:
         // if the list item is clicked this toggles the done class
         var finsihed = this.classList.toggle("done");
@@ -21,6 +21,18 @@ function createListElements() {
 
         // if the list item is clicked (li add event listener) then
         // finished is true
+        if (finished) {
+            removeButton.appendChild(Document.createTextNode("remove"));
+            removeButton.classList = "deleteButton";
+            li.appendChild(removeButton);
+
+            removeButton.addEventListener("click", function () {
+                this.parentElement.remove();
+            });
+        } else {
+            this.getElementsByClassName("deleteButton")[0].remove();
         }
-    }
+    });
+    //revert input value back to nothing 
+    input.value = " ";
 }
